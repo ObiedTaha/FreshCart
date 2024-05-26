@@ -1,0 +1,73 @@
+<section class="w-75 mx-auto shadow rounded my-3 bg-main-light p-5">
+    <h1 class="my-3">Register Now</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="handelForm()">
+        
+        <div class="form-item">
+            <label for="name">Name</label>
+            <input #inputName formControlName="name" class="form-control" type="text" id="name">
+        </div>
+
+        <!-- handel error for name -->
+        <div class="alert-danger" *ngIf="registerForm.get('name')?.errors &&( registerForm.get('name')?.touched || inputName.value.length>0)" >
+            <p class="text-muted" *ngIf="registerForm.get('name')?.getError('required') "><span class="text-danger">*</span> Name is Required</p>
+            <p class="text-muted" *ngIf="registerForm.get('name')?.getError('minlength')"><span class="text-danger">*</span> Min Length 3 letter</p>
+            <p class="text-muted" *ngIf="registerForm.get('name')?.getError('maxlength')"><span class="text-danger">*</span> Max Length 20 letter</p>
+        </div>
+
+        <div class="form-item">
+            <label for="email">Email</label>
+            <input #inputEmail formControlName="email" class="form-control" type="email" id="email">
+        </div>
+        <!-- handel error for E-mail -->
+        <div class="alert-danger" *ngIf="registerForm.get('email')?.errors && (registerForm.get('email')?.touched || inputEmail.value.length>0)">
+            <p class="text-muted" *ngIf="registerForm.get('email')?.getError('required')"><span class="text-danger">*</span> E-mail is Required</p>
+            <p class="text-muted" *ngIf="registerForm.get('email')?.getError('email')"><span class="text-danger">*</span> E-mail is Not valid</p>
+        </div>
+
+        <div class="form-item">
+            <label class="text-capitalize" for="password">password</label>
+            <div class="position-relative">
+                <input #inputPass #pass formControlName="password" class="form-control" type="password" id="password">
+                <span (click)="passwordShow = true; passwordShow == true? (pass.type = 'text'): (pass.type = 'password')" [ngClass]="{'d-none': passwordShow}" role="button" class="position-absolute top-50 end-0 translate-middle-y me-2"><i class="fas fa-eye"></i></span>
+                <span (click)="passwordShow = false;passwordShow == false? (pass.type = 'password'): (pass.type = 'text')" [ngClass]="{'d-none': !passwordShow}" role="button" class="position-absolute top-50 end-0 translate-middle-y me-2"><i class="fas fa-eye-slash"></i></span>
+            </div>
+        </div>
+
+        <!-- ---------------------handel error for password -------------------------->
+        <div class="alert-danger" *ngIf="registerForm.get('password')?.errors &&( registerForm.get('password')?.touched || inputPass.value.length>0)">
+            <p class="text-muted" *ngIf="registerForm.get('password')?.getError('required')"><span class="text-danger">*</span> Password is Required</p>
+            <p class="text-muted" *ngIf="registerForm.get('password')?.getError('pattern')"><span class="text-danger">*</span> Password must start uppercase then from 6 to 10</p>
+
+        </div>
+
+        <div class="form-item">
+            <label class="text-capitalize" for="rePassword">rePassword</label>
+            <div class="position-relative">
+                <input #inputRePass #pass formControlName="rePassword" class="form-control" type="password" id="rePassword">
+                <span (click)="rePasswordShow = true; rePasswordShow == true? (pass.type = 'text'): (pass.type = 'password')" [ngClass]="{'d-none': rePasswordShow}" role="button" class="position-absolute top-50 end-0 translate-middle-y me-2"><i class="fas fa-eye"></i></span>
+                <span (click)="rePasswordShow = false;rePasswordShow == false? (pass.type = 'password'): (pass.type = 'text')" [ngClass]="{'d-none': !rePasswordShow}" role="button" class="position-absolute top-50 end-0 translate-middle-y me-2"><i class="fas fa-eye-slash"></i></span>
+            </div>
+        </div>
+
+        <!-- ---------------------handel error for rePassword -------------------------->
+        <div class="alert-danger" *ngIf="registerForm.get('rePassword')?.errors && (registerForm.get('rePassword')?.touched || inputRePass.value.length>0)">
+            <p class="text-muted" *ngIf="registerForm.get('rePassword')?.getError('required')"><span class="text-danger">*</span> rePassword is Required</p>
+            <p class="text-muted" *ngIf="registerForm.get('rePassword')?.getError('mismatch')"><span class="text-danger">*</span> Password confirmation is incorrect </p>
+
+        </div>
+
+        <div class="form-item">
+            <label class="text-capitalize" for="phone">phone</label>
+            <input #inputPhone formControlName="phone" class="form-control" type="tel" id="phone">
+        </div>
+        <!-- handel error for phone -->
+        <div class="alert-danger" *ngIf="registerForm.get('phone')?.errors && (registerForm.get('phone')?.touched || inputPhone.value.length>0)">
+            <p class="text-muted" *ngIf="registerForm.get('phone')?.getError('required')"><span class="text-danger">*</span> Phone is Required</p>
+            <p class="text-muted" *ngIf="registerForm.get('phone')?.getError('pattern')"><span class="text-danger">*</span> Accept only Egypt phone number</p>
+
+        </div>
+
+        <button [disabled]="registerForm.invalid" class="btn-main mt-4 ms-auto d-block" ><i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i> Register</button>
+    </form>
+    
+</section>

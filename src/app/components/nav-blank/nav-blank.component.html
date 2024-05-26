@@ -1,0 +1,67 @@
+<nav #navbar class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink=""><img src="./assets/images/freshcart-logo.svg" alt="fresh cart logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>Menu
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link text-capitalize" routerLink="/home" routerLinkActive="active-link">home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-capitalize" routerLink="/products" routerLinkActive="active-link">products</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-capitalize" routerLink="/brands" routerLinkActive="active-link">brands</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-capitalize" routerLink="/categories" routerLinkActive="active-link">categories</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 gap-2 mb-lg-0 align-items-center">
+       
+        <li class="nav-item">
+          <a class="nav-link text-capitalize position-relative " routerLink="cart"><i
+              class="text-main  fa fa-cart-shopping fa-lg"></i> 
+              <span class="badge bg-danger rounded-5  position-absolute top-0 end-0 btn-sm " *ngIf="cartCount>0? 'd-none':''"> {{cartCount}}
+            </span></a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="position-relative nav-link text-capitalize" routerLink="/wishlist">
+            <i class=" text-danger fas fa-heart fa-lg "></i> 
+            <span class="badge bg-danger text-white rounded-5 position-absolute top-0 end-0" *ngIf="wishCount>0? 'd-none':''"> {{wishCount}} </span>
+          </a>
+        </li>
+
+        <li class="nav-item d-flex gap-3 me-3 ">
+          <a target="_blank" href="https://x.com/ObiedRamadan"><i class="fab fa-twitter  "></i></a>
+          <a target="_blank" href="https://www.facebook.com/ebeed.ramadan1"><i class="fab fa-facebook  "></i></a>
+          <a target="_blank" href="https://www.linkedin.com/in/obaid-ramadan-56a144180/"><i class="fab fa-linkedin"></i></a>
+          <a target="_blank" href="https://api.whatsapp.com/send?phone=01030991413" class="text-reset"><i class="fa-brands fa-whatsapp"></i></a>
+        </li>
+
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user fa-1x"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li role="button" routerLink="/forgetpassword" routerLinkActive="active-link"><a
+                class="dropdown-item">Froget Password</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item fw-bold signOut"><span role="button" (click)="signOut()">Sign Out</span></li>
+      </ul>
+
+
+    </div>
+  </div>
+</nav>

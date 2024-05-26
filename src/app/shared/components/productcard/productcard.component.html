@@ -1,0 +1,32 @@
+<div class="product h-100 p-1 position-relative">
+    <!-- icon for add to wish list -->
+    <i *ngIf="!wishList.includes($any(product._id))" role="button" (click)="addToWish(product._id)" class="fa-regular fa-heart heart text-danger"></i>
+    <!-- remove from wish list -->
+    <i  *ngIf="wishList.includes($any(product._id))" role="button" (click)="removeItem(product._id)" class="fas fa-heart heart text-danger "></i>
+      <header role="button" [routerLink]="['/details',product._id]">
+          <img class="w-100" [src]="product.imageCover" [title]="product.title" [alt]="product.title">
+          <h3 class="small pt-1">{{product.title| cutting:2}}</h3>
+          <h4 class="h6 text-main">{{product.category.name}}</h4>
+          <div class="d-flex align-items-center justify-content-between small">
+              <span>{{product.price | currency:' e£ ' }}</span>
+              <footer class="hstack justify-content-between">
+                  <div class="d-flex font-sm align-items-center">
+                    <ul class="d-flex mb-0 list-unstyled">
+                      <li *ngFor="let num of [1, 2, 3, 4, 5]">
+                        <i *ngIf="num <= product.ratingsAverage" class="fas fa-star rating-color"></i>
+                      </li>
+          
+                      <li *ngIf="product.ratingsAverage % 1 != 0">
+                        <i class="fas fa-star-half rating-color"></i>
+                      </li>
+                    </ul>
+                    <span> {{ product.ratingsAverage }} </span>
+                  </div>
+                </footer>
+          </div>
+      </header>
+      <footer>
+          <button (click)="addProduct(product._id, btnAdd)"  class="btn btn-main w-100" #btnAdd>+ Add To cart</button>
+      </footer>
+      
+  </div>

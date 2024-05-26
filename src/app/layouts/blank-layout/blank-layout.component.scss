@@ -1,0 +1,16 @@
+:host{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.main-section{
+    padding-top: 80px;
+}
+.btn-arrow{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 99;
+    border-radius: 50%;
+    border:1px solid mediumseagreen;
+}

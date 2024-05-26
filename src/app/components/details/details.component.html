@@ -1,0 +1,44 @@
+<section class="w-75 m-auto rounded p-3 shadow mb-4 bg-main-light" *ngIf="specificProducts">
+    <div class="row justify-content-center align-items-center ">
+        <div class="col-md-3">
+            <owl-carousel-o [options]="specificProductOptions">
+
+                <ng-container *ngFor="let path of specificProducts.images">
+                    <ng-template carouselSlide>
+                        <img class="w-100" [src]="path">
+                    </ng-template>
+                </ng-container>
+
+            </owl-carousel-o>
+        </div>
+        <div class="col-md-9">
+            <div>
+                <h2 class="h5">{{specificProducts.title}}</h2>
+                <p class="text-muted small">{{specificProducts.description}}</p>
+                <span class="text-main">{{specificProducts.category.name}}</span>
+                <div class="d-flex align-items-center justify-content-between small py-3">
+                    <span>{{specificProducts.price | currency:' e£ ' }}</span>
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <footer class="hstack justify-content-between">
+                            <div class="d-flex font-sm align-items-center">
+                              <ul class="d-flex mb-0 list-unstyled">
+                                <li *ngFor="let num of [1, 2, 3, 4, 5]">
+                                  <i *ngIf="num <= specificProducts.ratingsAverage" class="fas fa-star rating-color"></i>
+                                </li>
+                    
+                                <li *ngIf="specificProducts.ratingsAverage % 1 != 0">
+                                  <i class="fas fa-star-half rating-color"></i>
+                                </li>
+                              </ul>
+                              <span> {{ specificProducts.ratingsAverage }} </span>
+                            </div>
+                          </footer>
+                    </div>
+                </div>
+                <footer>
+                    <button (click)="addProduct(specificProducts._id, btnAdd)"  class="btn btn-main w-100" #btnAdd>+ Add To cart</button>
+                </footer>
+            </div>
+        </div>
+    </div>
+</section>

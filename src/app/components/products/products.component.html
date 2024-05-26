@@ -1,0 +1,30 @@
+<!-- part for prodducts -->
+<section class="py-3" *ngIf="allProducts.length>0">
+    <h2> All Products</h2>
+    <input type="search" class="form-control w-50 mx-auto my-5 rounded-2" placeholder="Search by Name...." [(ngModel)]="searchTerm">
+
+    <div class="row g-4 justify-content-center">
+        <div *ngFor="let product of allProducts | search: searchTerm | paginate: { id: 'productPaginate', itemsPerPage: pageSize, currentPage: currentPage, totalItems: total }" class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+        
+            <app-productcard [product]="product"></app-productcard> 
+       
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <pagination-controls  id="productPaginate"
+            (pageChange)="pageChanged($event)"
+            (pageBoundsCorrection)="pageChanged($event)"
+            [maxSize]="9"
+            [directionLinks]="true"
+            [autoHide]="true"
+            [responsive]="true"
+            previousLabel="Previous"
+            nextLabel="Next"
+            screenReaderPaginationLabel="Pagination"
+            screenReaderPageLabel="page"
+            screenReaderCurrentLabel="You're on page">
+        </pagination-controls>
+    </div>
+
+   
+</section>
