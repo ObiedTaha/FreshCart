@@ -4,13 +4,18 @@
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
 
-body {
-  background-image: url(./assets/images/light-patten.svg);
-  // background-position: center;
-  background-size: contain;
-  background-repeat: repeat;
-  // background-color: #09c;
-}
+// html[lang="ar"] {
+//   direction: rtl;
+//   text-align: right;
+// }
+
+// body {
+//   background-image: url(./assets/images/light-patten.svg);
+//   // background-position: center;
+//   background-size: contain;
+//   background-repeat: repeat;
+//   // background-color: #09c;
+// }
 
 :root {
   --main-color: #0aad0a;
@@ -139,18 +144,18 @@ a:hover {
   background-color: #11bd11;
 }
 
-.fa-facebook:hover {
+.fa-facebook {
   color: blue;
 }
 
-.fa-twitter:hover {
+.fa-twitter {
   color: #1DA1F2;
 }
 
-.fa-linkedin:hover {
+.fa-linkedin {
   color: #0077B5;
 }
 
-.fa-whatsapp:hover {
+.fa-whatsapp {
   color: #00d757;
 }

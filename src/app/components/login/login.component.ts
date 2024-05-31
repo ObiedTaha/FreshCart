@@ -4,12 +4,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,RouterLink],
+  imports: [CommonModule,ReactiveFormsModule,RouterLink,TranslateModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

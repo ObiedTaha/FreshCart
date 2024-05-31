@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Iproduct } from 'src/app/core/interfaces/iproduct';
 import { CuttingPipe } from 'src/app/core/pipes/cutting.pipe';
@@ -12,7 +13,7 @@ import { ProductcardComponent } from 'src/app/shared/components/productcard/prod
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, RouterLink, CuttingPipe, NgxPaginationModule,FormsModule,SearchPipe,ProductcardComponent],
+  imports: [CommonModule, RouterLink, CuttingPipe, NgxPaginationModule,FormsModule,SearchPipe,ProductcardComponent,TranslateModule],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })

@@ -17,7 +17,7 @@ export class WishlistComponent implements OnInit {
   constructor(private _WishlistService: WishlistService) { }
   allProducts: Iproduct[] = [];
   
-  wishList: string[] = [];
+  // wishList: string[] = [];
   // wishList=signal<Iproduct[]>([]);
 
   ngOnInit(): void {

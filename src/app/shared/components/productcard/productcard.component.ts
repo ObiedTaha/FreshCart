@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, Renderer2, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Iproduct } from 'src/app/core/interfaces/iproduct';
 import { CuttingPipe } from 'src/app/core/pipes/cutting.pipe';
@@ -10,7 +11,7 @@ import { WishlistService } from 'src/app/core/services/wishlist.service';
 @Component({
   selector: 'app-productcard',
   standalone: true,
-  imports: [CommonModule, CuttingPipe, RouterModule],
+  imports: [CommonModule, CuttingPipe, RouterModule,TranslateModule],
   templateUrl: './productcard.component.html',
   styleUrls: ['./productcard.component.scss']
 })

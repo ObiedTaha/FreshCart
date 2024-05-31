@@ -2,27 +2,25 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { CartService } from 'src/app/core/services/cart.service';
 import { WishlistService } from 'src/app/core/services/wishlist.service';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-nav-blank',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive,TranslateModule],
   templateUrl: './nav-blank.component.html',
   styleUrls: ['./nav-blank.component.scss']
 })
 export class NavBlankComponent implements OnInit {
 
-  constructor(private _Router: Router, private _CartService: CartService, private _ToastrService: ToastrService, private _Renderer2: Renderer2,private _WishlistService:WishlistService) { }
-
-
-
+  constructor(private _Router: Router, private _CartService: CartService, private _ToastrService: ToastrService, private _Renderer2: Renderer2, private _WishlistService: WishlistService) { }
 
 
   cartCount: number = 0;
-  wishCount:number=0;
+  wishCount: number = 0;
 
   ngOnInit(): void {
 
@@ -39,16 +37,16 @@ export class NavBlankComponent implements OnInit {
     });
 
     this._WishlistService.wishNumber.subscribe({
-      next:(data)=>{
-        this.wishCount=data;
+      next: (data) => {
+        this.wishCount = data;
       }
     });
 
     this._WishlistService.getWishList().subscribe({
-      next:(response)=>{
-        this.wishCount=response.count;
-        
-        
+      next: (response) => {
+        this.wishCount = response.count;
+
+
       }
     });
 

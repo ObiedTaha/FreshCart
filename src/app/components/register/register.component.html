@@ -1,9 +1,9 @@
 <section class="w-75 mx-auto shadow rounded my-3 bg-main-light p-5">
-    <h1 class="my-3">Register Now</h1>
+    <h1 class="my-3">{{"register.registerNow"| translate}}</h1>
     <form [formGroup]="registerForm" (ngSubmit)="handelForm()">
         
         <div class="form-item">
-            <label for="name">Name</label>
+            <label for="name"> {{"register.name"| translate}} </label>
             <input #inputName formControlName="name" class="form-control" type="text" id="name">
         </div>
 
@@ -15,7 +15,7 @@
         </div>
 
         <div class="form-item">
-            <label for="email">Email</label>
+            <label for="email">{{"login.email"| translate}}</label>
             <input #inputEmail formControlName="email" class="form-control" type="email" id="email">
         </div>
         <!-- handel error for E-mail -->
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-item">
-            <label class="text-capitalize" for="password">password</label>
+            <label class="text-capitalize" for="password">{{"login.pass"| translate}}</label>
             <div class="position-relative">
                 <input #inputPass #pass formControlName="password" class="form-control" type="password" id="password">
                 <span (click)="passwordShow = true; passwordShow == true? (pass.type = 'text'): (pass.type = 'password')" [ngClass]="{'d-none': passwordShow}" role="button" class="position-absolute top-50 end-0 translate-middle-y me-2"><i class="fas fa-eye"></i></span>
@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-item">
-            <label class="text-capitalize" for="rePassword">rePassword</label>
+            <label class="text-capitalize" for="rePassword">{{"register.rePass"| translate}}</label>
             <div class="position-relative">
                 <input #inputRePass #pass formControlName="rePassword" class="form-control" type="password" id="rePassword">
                 <span (click)="rePasswordShow = true; rePasswordShow == true? (pass.type = 'text'): (pass.type = 'password')" [ngClass]="{'d-none': rePasswordShow}" role="button" class="position-absolute top-50 end-0 translate-middle-y me-2"><i class="fas fa-eye"></i></span>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-item">
-            <label class="text-capitalize" for="phone">phone</label>
+            <label class="text-capitalize" for="phone">{{"register.phone"| translate}}</label>
             <input #inputPhone formControlName="phone" class="form-control" type="tel" id="phone">
         </div>
         <!-- handel error for phone -->
@@ -67,7 +67,7 @@
 
         </div>
 
-        <button [disabled]="registerForm.invalid" class="btn-main mt-4 ms-auto d-block" ><i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i> Register</button>
+        <button [disabled]="registerForm.invalid" class="btn-main mt-4 ms-auto d-block" ><i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i> {{"register.register"| translate}}</button>
     </form>
     
 </section>

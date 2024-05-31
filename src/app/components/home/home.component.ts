@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Icategory } from 'src/app/core/interfaces/icategory';
 import { Iproduct } from 'src/app/core/interfaces/iproduct';
@@ -12,7 +13,7 @@ import { ProductcardComponent } from 'src/app/shared/components/productcard/prod
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CuttingPipe, CarouselModule, RouterLink,ProductcardComponent],
+  imports: [CommonModule, CuttingPipe, CarouselModule, RouterLink,ProductcardComponent,TranslateModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
