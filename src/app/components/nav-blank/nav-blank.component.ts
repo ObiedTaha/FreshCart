@@ -21,11 +21,10 @@ export class NavBlankComponent implements OnInit {
   wishCount: number = 0;
   currentLanguage: any = 'en';
 
-  constructor(private _Router: Router, private _CartService: CartService, private _ToastrService: ToastrService, private _Renderer2: Renderer2, private _WishlistService: WishlistService, private _TranslationService: TranslationService, private translate: TranslateService) 
-  {
+  constructor(private _Router: Router, private _CartService: CartService, private _ToastrService: ToastrService, private _Renderer2: Renderer2, private _WishlistService: WishlistService, private _TranslationService: TranslationService, private translate: TranslateService) {
 
 
-    if (localStorage.getItem('CurrentLanguage') != 'ar' &&localStorage.getItem('CurrentLanguage') != 'en') {
+    if (localStorage.getItem('CurrentLanguage') != 'ar' && localStorage.getItem('CurrentLanguage') != 'en') {
       this.currentLanguage = 'en';
     } else {
       this.currentLanguage =
@@ -47,7 +46,7 @@ export class NavBlankComponent implements OnInit {
     });
 
   }
- 
+
 
 
 
@@ -56,58 +55,58 @@ export class NavBlankComponent implements OnInit {
   }
 
 
-ngOnInit(): void {
-  
+  ngOnInit(): void {
 
-  this._CartService.cartNumber.subscribe({
-    next: (data) => {
-      this.cartCount = data;
+
+    this._CartService.cartNumber.subscribe({
+      next: (data) => {
+        this.cartCount = data;
+      }
+    });
+
+    this._CartService.getCartUser().subscribe({
+      next: (response) => {
+        this.cartCount = response.numOfCartItems;
+      }
+    });
+
+    this._WishlistService.wishNumber.subscribe({
+      next: (data) => {
+        this.wishCount = data;
+      }
+    });
+
+    this._WishlistService.getWishList().subscribe({
+      next: (response) => {
+        this.wishCount = response.count;
+
+
+      }
+    });
+
+  }
+
+
+
+  signOut(): void {
+    localStorage.removeItem('token');
+    this._Router.navigate(['/login']);
+    this._ToastrService.success('You logOut.....')
+  }
+
+  @ViewChild('navbar') navbar!: ElementRef;
+
+  @HostListener('window:scroll')
+  onScroll(): void {
+    if (scrollY > 200) {
+      this._Renderer2.addClass(this.navbar.nativeElement, 'px-3');
+      // this._Renderer2.addClass(this.navbar.nativeElement, 'py-3');
+      this._Renderer2.addClass(this.navbar.nativeElement, 'shadow');
+    } else {
+      this._Renderer2.removeClass(this.navbar.nativeElement, 'px-3');
+      // this._Renderer2.removeClass(this.navbar.nativeElement, 'py-3');
+      this._Renderer2.removeClass(this.navbar.nativeElement, 'shadow');
     }
-  });
-
-  this._CartService.getCartUser().subscribe({
-    next: (response) => {
-      this.cartCount = response.numOfCartItems;
-    }
-  });
-
-  this._WishlistService.wishNumber.subscribe({
-    next: (data) => {
-      this.wishCount = data;
-    }
-  });
-
-  this._WishlistService.getWishList().subscribe({
-    next: (response) => {
-      this.wishCount = response.count;
-
-
-    }
-  });
-
-}
-
-
-
-signOut(): void {
-  localStorage.removeItem('token');
-  this._Router.navigate(['/login']);
-  this._ToastrService.success('You logOut.....')
-}
-
-@ViewChild('navbar') navbar!: ElementRef;
-
-@HostListener('window:scroll')
-onScroll(): void {
-  if(scrollY > 200) {
-  this._Renderer2.addClass(this.navbar.nativeElement, 'px-3');
-  // this._Renderer2.addClass(this.navbar.nativeElement, 'py-3');
-  this._Renderer2.addClass(this.navbar.nativeElement, 'shadow');
-} else {
-  this._Renderer2.removeClass(this.navbar.nativeElement, 'px-3');
-  // this._Renderer2.removeClass(this.navbar.nativeElement, 'py-3');
-  this._Renderer2.removeClass(this.navbar.nativeElement, 'shadow');
-}
   }
 
 }
