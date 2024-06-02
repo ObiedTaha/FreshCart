@@ -23,13 +23,16 @@
                 <input #inputPass #pass formControlName="password" class="form-control " type="password" id="password">
                 <span
                     (click)="passwordShow = true; passwordShow == true? (pass.type = 'text'): (pass.type = 'password')"
-                    [ngClass]="{'d-none': passwordShow ,'end-0':currentLang=='en','start-0':currentLang=='ar'}" role="button"
-                    class="position-absolute top-50 end-0 translate-middle-y mx-2"><i class="fas fa-eye"></i></span>
+                    [ngClass]="{'d-none': passwordShow ,'end-0':currentLang=='en','start-0':currentLang=='ar'}"
+                    role="button" class="position-absolute top-50 end-0 translate-middle-y mx-2">
+                    <i class="fas fa-eye"></i>
+                </span>
                 <span
                     (click)="passwordShow = false;passwordShow == false? (pass.type = 'password'): (pass.type = 'text')"
-                    [ngClass]="{'d-none': !passwordShow,'end-0':currentLang=='en','start-0':currentLang=='ar'}" role="button"
-                    class="position-absolute top-50 end-0 translate-middle-y mx-2"><i
-                        class="fas fa-eye-slash"></i></span>
+                    [ngClass]="{'d-none': !passwordShow,'end-0':currentLang=='en','start-0':currentLang=='ar'}"
+                    role="button" class="position-absolute top-50 end-0 translate-middle-y mx-2">
+                    <i class="fas fa-eye-slash"></i>
+                </span>
             </div>
 
         </div>

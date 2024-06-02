@@ -5,23 +5,33 @@ import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { TranslationService } from 'src/app/core/services/translation.service';
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  constructor(private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router,private _ToastrService:ToastrService) { }
   // global variables
   errMessage: string = '';
   isLoading: boolean = false;
   //that handel eye icon for password input
   passwordShow: boolean = false;
   rePasswordShow: boolean = false;
+  currentLang: string = '';
+
+  constructor(private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router, private _ToastrService: ToastrService, private _TranslationService: TranslationService) {
+    this._TranslationService.lang.subscribe((lang) => {
+      // this if condition to check direction of all project according to current language
+      this.currentLang = lang
+
+    });
+  }
+
 
 
   registerForm: FormGroup = this._FormBuilder.group({
