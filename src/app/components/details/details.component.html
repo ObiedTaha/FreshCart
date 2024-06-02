@@ -1,9 +1,9 @@
 <section class="w-75 m-auto rounded p-3 shadow mb-4 bg-main-light" *ngIf="specificProducts">
     <div class="row justify-content-center align-items-center ">
         <div class="col-md-3">
-            <owl-carousel-o [options]="specificProductOptions">
+            <owl-carousel-o [options]="specificProductOptions" class="dir-ltr">
 
-                <ng-container *ngFor="let path of specificProducts.images">
+                <ng-container *ngFor="let path of specificProducts.images" >
                     <ng-template carouselSlide>
                         <img class="w-100" [src]="path">
                     </ng-template>
