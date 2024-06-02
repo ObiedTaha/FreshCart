@@ -44,9 +44,9 @@
         <div class="form-item">
             <label class="text-capitalize" for="rePassword">{{"register.rePass"| translate}}</label>
             <div class="position-relative">
-                <input #inputRePass #pass formControlName="rePassword" class="form-control" type="password" id="rePassword">
-                <span (click)="rePasswordShow = true; rePasswordShow == true? (pass.type = 'text'): (pass.type = 'password')" [ngClass]="{'d-none': rePasswordShow,'end-0':currentLang=='en','start-0':currentLang=='ar'}" role="button" class="position-absolute top-50 end-0 translate-middle-y me-2 ms-2"><i class="fas fa-eye"></i></span>
-                <span (click)="rePasswordShow = false;rePasswordShow == false? (pass.type = 'password'): (pass.type = 'text')" [ngClass]="{'d-none': !rePasswordShow,'end-0':currentLang=='en','start-0':currentLang=='ar'}" role="button" class="position-absolute top-50 end-0 translate-middle-y me-2 ms-2"><i class="fas fa-eye-slash"></i></span>
+                <input #inputRePass #rePass formControlName="rePassword" class="form-control" type="password" id="rePassword">
+                <span (click)="rePasswordShow = true; rePasswordShow == true? (rePass.type = 'text'): (rePass.type = 'password')" [ngClass]="{'d-none': rePasswordShow,'end-0':currentLang=='en','start-0':currentLang=='ar'}" role="button" class="position-absolute top-50 end-0 translate-middle-y me-2 ms-2"><i class="fas fa-eye"></i></span>
+                <span (click)="rePasswordShow = false;rePasswordShow == false? (rePass.type = 'password'): (rePass.type = 'text')" [ngClass]="{'d-none': !rePasswordShow,'end-0':currentLang=='en','start-0':currentLang=='ar'}" role="button" class="position-absolute top-50 end-0 translate-middle-y me-2 ms-2"><i class="fas fa-eye-slash"></i></span>
             </div>
         </div>
 
