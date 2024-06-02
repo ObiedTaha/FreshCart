@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslationService } from 'src/app/core/services/translation.service';
 
 
 
@@ -16,11 +17,21 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router,private _ToastrService:ToastrService) { }
-  // global variables
-
   isLoading: boolean = false;
   passwordShow: boolean = false;
+  currentLang:any='';
+
+  constructor(private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router,private _ToastrService:ToastrService,private _TranslationService:TranslationService) {
+    this._TranslationService.lang.subscribe((lang) => {
+      // this if condition to check direction of all project according to current language
+      this.currentLang=lang
+ 
+});
+   }
+  // global variables
+
+
+
 
   loginForm: FormGroup = this._FormBuilder.group({
     email: ['', [Validators.required, Validators.email]],

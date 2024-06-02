@@ -7,6 +7,7 @@ import { Icategory } from 'src/app/core/interfaces/icategory';
 import { Iproduct } from 'src/app/core/interfaces/iproduct';
 import { CuttingPipe } from 'src/app/core/pipes/cutting.pipe';
 import { ProductService } from 'src/app/core/services/product.service';
+import { TranslationService } from 'src/app/core/services/translation.service';
 import { WishlistService } from 'src/app/core/services/wishlist.service';
 import { ProductcardComponent } from 'src/app/shared/components/productcard/productcard.component';
 
@@ -18,8 +19,14 @@ import { ProductcardComponent } from 'src/app/shared/components/productcard/prod
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+
   //dependece injection for class that use at this component
-  constructor(private _ProductService: ProductService,private _WishlistService: WishlistService) { }
+  constructor(private _ProductService: ProductService,private _WishlistService: WishlistService) { 
+  }
+
+
+
 
   allProducts: Iproduct[] = [];
   categories: Icategory[] = [];
