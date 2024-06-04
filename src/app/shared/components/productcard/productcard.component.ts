@@ -57,25 +57,31 @@ export class ProductcardComponent implements OnInit {
       })
     } else {
       this._Router.navigate(['/login']);
-      this._ToastrService.warning('You should Login or Register if you do not have ');
+      this._ToastrService.warning('You should Login or Register if you do not have one ');
     }
 
   };
 
   addToWish(productId: string | undefined): void {
+    if ('' || null != localStorage.getItem('token')) {
 
-    this._WishlistService.addToWishlist(productId).subscribe({
-      next: (response) => {
+      this._WishlistService.addToWishlist(productId).subscribe({
+        next: (response) => {
 
-        console.log(response);
-        this.wishList = response.data;
-        // this.wishList.update(response.data);
+          console.log(response);
+          this.wishList = response.data;
+          // this.wishList.update(response.data);
 
-        this._ToastrService.success(response.message);
-        this._WishlistService.wishNumber.next(response.data.length);
+          this._ToastrService.success(response.message);
+          this._WishlistService.wishNumber.next(response.data.length);
 
-      }
-    })
+        }
+      })
+    } else {
+      this._Router.navigate(['/login']);
+      this._ToastrService.warning('You should Login or Register if you do not have ');
+    }
+
   };
 
   removeItem(productId: string | undefined): void {
