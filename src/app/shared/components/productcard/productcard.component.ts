@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, Renderer2, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Iproduct } from 'src/app/core/interfaces/iproduct';
@@ -11,12 +11,12 @@ import { WishlistService } from 'src/app/core/services/wishlist.service';
 @Component({
   selector: 'app-productcard',
   standalone: true,
-  imports: [CommonModule, CuttingPipe, RouterModule,TranslateModule],
+  imports: [CommonModule, CuttingPipe, RouterModule, TranslateModule],
   templateUrl: './productcard.component.html',
   styleUrls: ['./productcard.component.scss']
 })
 export class ProductcardComponent implements OnInit {
-  constructor(private _WishlistService: WishlistService, private _ToastrService: ToastrService, private _Renderer2: Renderer2, private _CartService: CartService) { }
+  constructor(private _WishlistService: WishlistService, private _ToastrService: ToastrService, private _Renderer2: Renderer2, private _CartService: CartService, private _Router: Router) { }
 
   @Input() product!: Iproduct;
   // @Input() flag:boolean=false;
@@ -40,20 +40,26 @@ export class ProductcardComponent implements OnInit {
     //that make btn disabled while backend send response
     this._Renderer2.setAttribute(element, 'disabled', 'true');
     //that methode add product to cart 
-    this._CartService.addToCart(id).subscribe({
-      next: (response) => {
-        // show message to user with toaster
-        this._ToastrService.success(response.message);
-        this._Renderer2.removeAttribute(element, 'disabled');
-        // add update for product at cart 
-        this._CartService.cartNumber.next(response.numOfCartItems)
-      },
-      error: (err) => {
-        this._ToastrService.error(err.message);
-        this._Renderer2.removeAttribute(element, 'disabled');
+    if ('' || null != localStorage.getItem('token')) {
+      this._CartService.addToCart(id).subscribe({
+        next: (response) => {
+          // show message to user with toaster
+          this._ToastrService.success(response.message);
+          this._Renderer2.removeAttribute(element, 'disabled');
+          // add update for product at cart 
+          this._CartService.cartNumber.next(response.numOfCartItems)
+        },
+        error: (err) => {
+          this._ToastrService.error(err.message);
+          this._Renderer2.removeAttribute(element, 'disabled');
 
-      }
-    })
+        }
+      })
+    } else {
+      this._Router.navigate(['/login']);
+      this._ToastrService.warning('You should Login or Register if you do not have ');
+    }
+
   };
 
   addToWish(productId: string | undefined): void {
@@ -81,7 +87,7 @@ export class ProductcardComponent implements OnInit {
         this._ToastrService.success(response.message);
         this._WishlistService.wishNumber.next(response.data.length);
         // this.wishList.update(response.data);
-  
+
         // const newproducts = this.allProducts.filter((item: any) => this.wishList.includes(item._id));
         // this.allProducts = newproducts;       
       }
